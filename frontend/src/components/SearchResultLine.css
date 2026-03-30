@@ -1,0 +1,10 @@
+.search-result-line {
+ border:#efefef;
+ padding: 10px;
+  color: rgb(142, 5, 114);
+}
+
+.search-result-line:hover{
+background-color: #efefef;
+}
+

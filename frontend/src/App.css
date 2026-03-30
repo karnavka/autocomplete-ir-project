@@ -1,0 +1,34 @@
+.App {
+  background-color: rgb(245, 204, 241);
+  height: 100vh;
+  width: 100vw;
+}
+
+.search-container {
+  width: 40%; /* 40% of parent component */
+  margin: auto;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+.GifHolder {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 15vh;
+  width: 40%;
+  display: flex;
+  justify-content:space-between
+}
+
+.gif {
+  width: 150px;
+  height: auto;
+}
+
+#nyan-cat{
+   width: 50vw;
+   height:15vh;
+}

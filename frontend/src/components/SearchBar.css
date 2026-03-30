@@ -1,0 +1,70 @@
+.inputAndPopup {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper {
+  background-color: rgb(249, 248, 240);
+  width: 100%;
+  border-radius: 10px;
+  height: 2.5rem;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1rem;
+  width: 100%;
+  margin-left: 5px;
+  font-style: italic;
+}
+
+input:focus {
+  outline: none;
+}
+
+#search-icon {
+  color: rgb(142, 5, 114);
+}
+
+#parameters-button {
+  background-color: rgb(245, 204, 241);
+  border: none;
+  color: rgb(207, 70, 179);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+#parameters-button:hover {
+  background-color: rgb(224, 164, 218);
+  color: rgb(142, 5, 114);
+}
+
+.popUP {
+  position: absolute;
+  top:calc(100% - 70px) ;
+  left: calc(100% + 12px);
+  z-index: 1000;
+  width: 240px;
+}
+
+#cluster-button {
+  font-size: 0.8rem;
+  color: rgb(207, 70, 179);
+  background-color: rgb(245, 204, 241);
+  width: fit-content;
+  border: none;
+  padding: 4px;
+  margin: 10px;
+  border-radius: 5px;
+}
+#cluster-button:hover {
+  background-color: rgb(224, 164, 218);
+  color: rgb(142, 5, 114);
+}
