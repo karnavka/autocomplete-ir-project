@@ -1,34 +1,40 @@
-import React from "react";
 import "./SearchBar.css";
 import { useState } from "react";
-
 import { FaSearch } from "react-icons/fa";
-import { Parameters } from "./Parameters";
 
 type SearchBarProps = {
-  onSearch: (query: string, param: string) => void;
-  param: string;
-  SetParameters: (param: string) => void;
-  clusterResults: () => void;
+  setResults: React.Dispatch<React.SetStateAction<string[]>>;
+  
 };
 
-export const SearchBar = ({
-  onSearch,
-  param,
-  SetParameters,
-  clusterResults
-}: SearchBarProps) => {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      onSearch(query, param);
+export const SearchBar = ({ setResults }: SearchBarProps) => {
+  const [query, setQuery] = useState("");
+
+  const handleChange = async (value: string) => {
+    setQuery(value);
+
+    if (!value.trim()) {
+      setResults([]);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/autocomplete?q=${encodeURIComponent(value)}&limit=5`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch suggestions");
+      }
+
+      const data: string[] = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error(error);
+      setResults([]);
     }
   };
 
-  const [query, setQuery] = useState("");
-  const [popUp, openPopUp] = useState(false);
-  const closePopUp = async () => {
-    openPopUp(false);
-  };
   return (
     <div className="inputAndPopup">
       <div className="input-wrapper">
@@ -36,25 +42,9 @@ export const SearchBar = ({
         <input
           placeholder="Шукати тут..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onChange={(e) => handleChange(e.target.value)}
         />
-        <button id="cluster-button" onClick={clusterResults}>
-          Кластеризувати
-        </button>
-        <button id="parameters-button" onClick={() => openPopUp(true)}>
-          Параметри
-        </button>
       </div>
-      {popUp && (
-        <div className="popUP">
-          <Parameters
-            SetParameters={SetParameters}
-            closePopUp={closePopUp}
-            param={param}
-          />
-        </div>
-      )}
     </div>
   );
 };
