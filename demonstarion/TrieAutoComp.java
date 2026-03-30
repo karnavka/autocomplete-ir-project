@@ -5,19 +5,21 @@ import java.util.Map;
 
 public class TrieAutoComp {
 
-    public class Node {
+    private class Node {
         Map<Character, Node> children;
         char c;
         boolean isWord;
 
-        public Node(char c) {
+        Node(char c) {
             this.c = c;
             children = new HashMap<>();
         }
-        public Node() {
+
+        Node() {
             children = new HashMap<>();
         }
-        public void insert(String word) {
+
+        void insert(String word) {
             if (word == null || word.isEmpty())
                 return;
             char firstChar = word.charAt(0);
@@ -40,6 +42,7 @@ public class TrieAutoComp {
         for (String word : words)
             root.insert(word);
     }
+
     public boolean find(String prefix) {
         Node lastNode = root;
         for (char c : prefix.toCharArray()) {
@@ -49,9 +52,10 @@ public class TrieAutoComp {
         }
         return lastNode.isWord;
     }
-    
-    public void suggest(Node root, List<String> list, StringBuffer curr) {
-        if (root.isWord) list.add(curr.toString());
+
+    public void suggest(Node root, List<String> list, StringBuilder curr) {
+        if (root.isWord)
+            list.add(curr.toString());
         if (root.children == null || root.children.isEmpty())
             return;
         for (Node child : root.children.values()) {
@@ -63,7 +67,7 @@ public class TrieAutoComp {
     public List<String> suggest(String prefix) {
         List<String> list = new ArrayList<>();
         Node lastNode = root;
-        StringBuffer curr = new StringBuffer();
+        StringBuilder curr = new StringBuilder();
         for (char c : prefix.toCharArray()) {
             lastNode = lastNode.children.get(c);
             if (lastNode == null)
