@@ -1,0 +1,10 @@
+apple\t120
+apple watch\t100
+apple store\t90
+application form\t40
+app ideas\t30
+car\t110
+car rental\t95
+car insurance\t80
+cat\t70
+cat food\t60
